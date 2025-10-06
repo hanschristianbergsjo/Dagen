@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dagen Reels Generator</title>
+  <!-- Import Dagen fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Schibsted+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Dagen Reels</h1>
+      <p>Lag korte, vertikale videoer av Dagens artikler med et tastetrykk.</p>
+    </header>
+    <main>
+      <label for="articleUrl">Lim inn lenken til artikkelen:</label>
+      <input type="url" id="articleUrl" placeholder="https://www.dagen.no/..." required>
+      <button id="generateBtn">Generer reel</button>
+      <div id="status"></div>
+      <div id="result"></div>
+    </main>
+    <footer>
+      <small>© 2025 Dagen. Dette er en demo for automatisert videoproduksjon.</small>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
