@@ -25,28 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
     resultDiv.textContent = '';
 
     try {
-      // Placeholder: call backend endpoint
-      // Replace '/api/convert' with the actual endpoint on your server
+      // Call the backend convert endpoint.  It returns an MP4 file by default.
       const response = await fetch('/api/convert?url=' + encodeURIComponent(url));
       if (!response.ok) {
         throw new Error('Serverfeil: ' + response.status);
       }
-      const data = await response.json();
-      // Expecting data.videoUrl and optionally data.subtitleUrl
+      // Read the response as a Blob (binary data)
+      const blob = await response.blob();
+      // Create a temporary object URL for the video file
+      const videoUrl = URL.createObjectURL(blob);
       statusDiv.textContent = 'Video generert!';
       const videoLink = document.createElement('a');
-      videoLink.href = data.videoUrl;
+      videoLink.href = videoUrl;
+      videoLink.download = 'dagen_reel.mp4';
       videoLink.textContent = 'Last ned video';
-      videoLink.target = '_blank';
       resultDiv.appendChild(videoLink);
-      if (data.subtitleUrl) {
-        const subtitleLink = document.createElement('a');
-        subtitleLink.href = data.subtitleUrl;
-        subtitleLink.textContent = 'Last ned undertekster';
-        subtitleLink.target = '_blank';
-        subtitleLink.style.display = 'block';
-        resultDiv.appendChild(subtitleLink);
-      }
     } catch (err) {
       console.error(err);
       statusDiv.textContent = 'Det oppstod en feil ved generering av video.';
