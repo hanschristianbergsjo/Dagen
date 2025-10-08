@@ -37,6 +37,13 @@ def summarise_text(text: str, max_scenes: int = 5) -> List[str]:
     return scenes[:max_scenes]
 
 def generate_audio_elevenlabs(text: str, idx: int, output_dir: str) -> Tuple[str, float]:
+    except Exception:
+    duration = max(3.0, len(text.split()) / 3.0)
+    silence = AudioClip(lambda t: 0 * t, duration=duration)
+    silence.write_audiofile(filepath, fps=44100)
+    # return the fallback path and duration
+    return filepath, duration
+
     os.makedirs(output_dir, exist_ok=True)
     filename = f'scene_{idx}.mp3'
     filepath = os.path.join(output_dir, filename)
