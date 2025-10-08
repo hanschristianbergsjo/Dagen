@@ -43,6 +43,7 @@ def generate_audio_elevenlabs(text: str, idx: int, output_dir: str) -> Tuple[str
     silence.write_audiofile(filepath, fps=44100)
     # return the fallback path and duration
     return filepath, duration
+    
 
     os.makedirs(output_dir, exist_ok=True)
     filename = f'scene_{idx}.mp3'
@@ -50,6 +51,7 @@ def generate_audio_elevenlabs(text: str, idx: int, output_dir: str) -> Tuple[str
     api_key = os.environ.get('ELEVENLABS_API_KEY')
     voice_id = os.environ.get('ELEVENLABS_VOICE_ID', '21m00Tcm4TlvDq8ikWAM')
     model_id = os.environ.get('ELEVENLABS_MODEL_ID', 'eleven_monolingual_v1')
+    return filepath, duration
     if api_key:
         url = f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}'
         headers = {
