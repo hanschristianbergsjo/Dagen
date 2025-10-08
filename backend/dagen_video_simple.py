@@ -103,5 +103,4 @@ def create_video(scenes: List[Scene], brand: BrandConfig, output_path: str) -> N
     audio = CompositeAudioClip(audio_clips)
     final = video.set_audio(audio)
     final.write_videofile(output_path, fps=30, codec='libx264', audio_codec='aac')
-si### lence.close()
   # #   return filepath, duration
